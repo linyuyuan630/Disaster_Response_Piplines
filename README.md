@@ -1,6 +1,15 @@
 # Disaster Response Pipeline Project
+## Installation
 
-### Instructions:
+- Python 3
+- Anaconda distribution to install Python, since the distribution includes all necessary Python libraries as well as Jupyter Notebooks.
+- Numpy
+- Pandas
+- Matplotlib
+- Seaborn
+- sklearn (Random Forest Regressor is used for machine learning algrithm)
+
+## Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
