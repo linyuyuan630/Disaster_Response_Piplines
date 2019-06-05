@@ -19,13 +19,13 @@ import nltk
 
 def load_data(database_filepath):
     """
-    Loads data from database
-    Args:
-        database_filepath: path to database
+    this function loads data from database file
+    Parameters:
+        database_filepath (string type): file path of the input database
     Returns:
-        (Dataframe) X: features
-        (Dataframe) Y: labels
-        (Dataframe) category_names: label names
+        X (dataframe): feature data
+        Y (dataframe): label data
+        category_names (list): labels
     """
     engine = create_engine(f"sqlite:///{database_filepath}")
     df = pd.read_sql_table("Message_new", con=engine)
@@ -37,11 +37,13 @@ def load_data(database_filepath):
 
 def tokenize(text):
     """
-    tokenize text
-    Args: text
+    This function lemmatizes and tokenizes text in the messages
+    
+    Parameters:
+    text (string): the input text
     
     Returns:
-    
+    clean_tokens (list): a list of lemmatized and tokenized strings from a message text
     """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
@@ -53,6 +55,13 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    This function build a machine learning model with grid search and NPL pipeline
+    
+    Parameters: none
+    
+    Returns: a machine learning estimator with NPL pipeline processes and specified parameters.
+    """
     pipeline = Pipeline([
         ('vect', CountVectorizer()),
         ('best', TruncatedSVD()),
@@ -69,13 +78,34 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    This function evaluates machine learning models
+    
+    Parameters:
+    model (estimator): the machine learning estimator after training
+    X_test (dataframe): the test dataset for prediction
+    Y_test (dataframe): the real dataset
+    category_names (lsit): the input for target_names in classification report
+    
+    Returns: none, but there is a report that shows the performance of the machine learning to print
+    """
+    
     y_pred = model.predict(X_test)
-    for i, col in enumerate(Y_test):
-        print(col)
-        print(classification_report(Y_test[col], y_pred[:, i]))
+    print(classification_report(y_pred, Y_test, target_names = category_names))
+
 
 
 def save_model(model, model_filepath):
+    """
+    This function saves the trained machine learning model to a targeted file path
+    
+    Parameters:
+    model (estimator): the machine learning estimator after training
+    model_filepath (string): the desired file path for meachine learning model
+    
+    Returns: none, but the trained machine learning model is saved as a pickle file
+    """
+    
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
