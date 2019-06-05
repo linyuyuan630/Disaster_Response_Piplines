@@ -16,8 +16,8 @@
 - app
 
    - template
-   - master.html  # main page of web app
-   - go.html  # classification result page of web app
+      - master.html  # main page of web app
+      - go.html  # classification result page of web app
    - run.py  # Flask file that runs app
 
 
@@ -25,12 +25,12 @@
 
    - disaster_categories.csv  # data to process 
    - disaster_messages.csv  # data to process
-   - process_data.py
-   - InsertDatabaseName.db   # database to save clean data to
+   - process_data.py # the python file taht conducts the Extract, Transform, and Load process
+   - InsertDatabaseName.db   # database to save clean data to a pickle file
 
 - models
 
-   - train_classifier.py
+   - train_classifier.py # the python file that runs machine learning pipeline and saved the trained model as 
    - classifier.pkl  # saved model 
    
 
