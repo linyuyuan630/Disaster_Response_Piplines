@@ -12,6 +12,7 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
    If the above link does not work, Try the following steps:
    Run the app with "python run.py" command
    Open another terminal and type env|grep WORK this will give you the spaceid (it will start with view*** and some characters after that)
