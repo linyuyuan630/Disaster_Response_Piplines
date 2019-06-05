@@ -4,12 +4,30 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    This function loads two csv files as pandas dataframes and merge them into one.
+    
+    Parameters:
+    messages_filepath (string type): location of the messages csv file
+    categories_filepath (string type) : location of the categories csv file
+    
+    Returns: merged dataframe of messages and categories on each id 
+    """
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df = messages.merge(categories, on='id')
     return df
 
 def clean_data(df):
+    """
+    This function cleans the input dataframe with reseting index
+    and converting category values to numbers 0 or 1.
+
+    Parameters: df (pandas dataframe)
+    
+    Returns: df (pandas dataframe)
+    """
+    
     categories = df['categories'].str.split(pat=';', expand=True)
     row = categories.iloc[0,:]
     category_colnames = row.apply(lambda x:x.split('-')[0]).values.tolist()
@@ -26,6 +44,15 @@ def clean_data(df):
 
 
 def save_data(df, database_filepath):
+    """
+    This function exports a dataframe file as a sql file.
+
+    Parameters: 
+    df (pandas dataframe)
+    database_filepath (string): the location where database file should be saved 
+    
+    """
+    
     engine = create_engine('sqlite:///' + database_filepath)
     df.to_sql('Message_new', engine, index=False) 
 
