@@ -18,6 +18,15 @@ import nltk
 
 
 def load_data(database_filepath):
+    """
+    Loads data from database
+    Args:
+        database_filepath: path to database
+    Returns:
+        (Dataframe) X: features
+        (Dataframe) Y: labels
+        (Dataframe) category_names: label names
+    """
     engine = create_engine(f"sqlite:///{database_filepath}")
     df = pd.read_sql_table("Message_new", con=engine)
     X = df["message"]
@@ -27,6 +36,13 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """
+    tokenize text
+    Args: text
+    
+    Returns:
+    
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
     clean_tokens = []
