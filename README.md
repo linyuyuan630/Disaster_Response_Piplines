@@ -1,4 +1,8 @@
 # Disaster Response Pipeline Project
+
+## Intriduction
+This is a Udacity project that apply data engineering skills to analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
+
 ## Installation
 
 - Python 3
@@ -56,3 +60,6 @@
    Now open the browser window and type https://viewa7a4999b-3001.udacity-student-workspaces.com, replace the whole viewa7a4999b with the
    space id that you got after running env|grep WORK
    Press enter and the app should now run for you
+   
+ ## Acknowledgement
+ Data was originally from Figure Eight. Lots of the codes are provided by Udacity.
